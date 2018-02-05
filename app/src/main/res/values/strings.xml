@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AI_Farmer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="ai_farmer">AI-Farmer</string>
+    <string name="temperature">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="btnLogin">Login</string>
+    <string name="btnRegister">Register</string>
+</resources>

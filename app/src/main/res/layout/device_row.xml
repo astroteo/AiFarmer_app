@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id = "@+id/txt_device_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:textSize="40dp"
+    android:textColor="#000000"
+    android:text="ciaooo"
+    android:textStyle="bold"
+    android:padding="12dp"
+    android:background="@drawable/textview_roundcorner"
+    android:shadowColor="#bababa"
+    android:shadowDx="1"
+    android:shadowDy="1"
+    android:shadowRadius="2"
+    android:elevation="10dp"
+    />

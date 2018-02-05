@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorPrimaryDark">
+            <TextView
+                android:id="@+id/lbl_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="AI-Farmer"
+                android:textColor="#ffffff"
+                android:textSize="20dp" />
+        </android.support.v7.widget.Toolbar>
+
+
+        <!-- ListView delle scan delle wifi -->
+        <ListView
+            android:id="@+id/wifilist"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="25dp"
+            android:minWidth="25dp"
+            android:divider="#00ffffff"
+            android:dividerHeight="4dp" />
+
+    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/scan_btn"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/accesspoint"
+        tools:layout_editor_absoluteX="310dp"
+        tools:layout_editor_absoluteY="490dp"
+        android:clickable="true"
+        app:backgroundTint="#3F51B5"
+        app:elevation="10dp"/>
+</android.support.design.widget.CoordinatorLayout>

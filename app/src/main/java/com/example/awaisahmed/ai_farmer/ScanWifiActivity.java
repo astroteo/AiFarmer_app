@@ -250,8 +250,7 @@ public class ScanWifiActivity extends AppCompatActivity {
 
         edtxtSerial  = (EditText) findViewById(R.id.dev_serialnr);
         edtxtPin = (EditText) findViewById(R.id.dev_pin);
-        final String devSerial = edtxtSerial.getText().toString();
-        final String devPin = edtxtPin.getText().toString();
+
 
         Toast.makeText(this,"Connected sensor - Authentication",Toast.LENGTH_LONG).show();
 
@@ -259,6 +258,8 @@ public class ScanWifiActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Passo il pin e la seriale
+                String devSerial = edtxtSerial.getText().toString();
+                String devPin = edtxtPin.getText().toString();
                 String result = "";
                 String username = pref.getString("user_name", null);
                 String myUrl = "http://app.aifarmer.du.cdr.mn/api/user/" + username + "/";

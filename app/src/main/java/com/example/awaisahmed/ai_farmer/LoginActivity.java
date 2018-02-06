@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,10 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
+
+        ScrollView myLayout = this.findViewById(R.id.parent_scroll_view);
+        myLayout.requestFocus();
+
         pref = getApplicationContext().getSharedPreferences("UserPref",0);
         editor = pref.edit();
 
@@ -42,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         Button button_login = (Button) findViewById(R.id.button_login);
 
         Toast.makeText(this, "Welcome to AI Farmer App", Toast.LENGTH_SHORT).show();
+
 
         if (pref.contains("user_name") && pref.contains("user_token")) {
             startActivity(new Intent(LoginActivity.this,AlreadyLoggedActivity.class));
@@ -64,8 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                     task.execute("http://app.aifarmer.du.cdr.mn/rest-auth/login/",
                             "{\"username\":\"" + pref.getString("user_name", null) + "\"" +
                                     ",\"password\":\"" + rpsw + "\"}");
-                } catch (NullPointerException npe) {
+                } catch (Exception e) {
                     Toast.makeText(LoginActivity.this,"Unregistered user or wrong password",Toast.LENGTH_LONG);
+                    e.printStackTrace();
                     Intent i = getIntent();
                     finish();
                     startActivity(i);

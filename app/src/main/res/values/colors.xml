@@ -7,4 +7,5 @@
     <color name="colorText">#676f7c</color>
     <color name="colorTextButton">#434955</color>
     <color name="colorBackground">#f2f3f5</color>
+    <color name="colorEditTextFocused">#33bbff</color>
 </resources>

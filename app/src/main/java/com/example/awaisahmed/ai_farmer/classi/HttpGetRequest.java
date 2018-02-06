@@ -11,6 +11,7 @@ import com.example.awaisahmed.ai_farmer.StatusActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -123,16 +124,15 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
     }
 
     public int deJsonizeId(String json) {
-        JSONArray jsonArray = null;
-        ArrayList<SingleDevice> userList = new ArrayList<>();
+        JSONObject jsonObject = null;
         int userId = 0;
         try {
-            jsonArray = new JSONArray(json);
-        } catch(JSONException e) {
-            e.printStackTrace();
+            jsonObject = new JSONObject(json);
+        } catch (JSONException je) {
+            je.printStackTrace();
         }
         try {
-            userId = jsonArray.getJSONObject(0).getInt("id");
+            userId = jsonObject.getInt("id");
         } catch (JSONException e) {
             e.printStackTrace();
         }

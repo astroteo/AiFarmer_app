@@ -1,17 +1,29 @@
 package com.example.awaisahmed.ai_farmer.classi;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.awaisahmed.ai_farmer.AddDevActivity;
 import com.example.awaisahmed.ai_farmer.LoginActivity;
+import com.example.awaisahmed.ai_farmer.MainActivity;
+import com.example.awaisahmed.ai_farmer.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.net.*;
+import java.util.concurrent.ExecutionException;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -23,6 +35,7 @@ public class HttpPostAsyncTask extends AsyncTask<String, Void, Void> {
 
     Context activity;
     String response;
+    String err;
     boolean getToken = false;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -70,19 +83,39 @@ public class HttpPostAsyncTask extends AsyncTask<String, Void, Void> {
             BufferedWriter writer = new BufferedWriter (new OutputStreamWriter(out, "UTF-8"));
             writer.write(data);
             writer.flush();
+            InputStream errStream = new BufferedInputStream(urlConnection.getErrorStream());
+            err = convertInputStreamToString(errStream);
             InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
             response = convertInputStreamToString(inputStream);
             if (getToken) {
                 deJsonizeToken(response);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException ioe) {
+           ioe.printStackTrace();
         }
         return null;
     }
 
     @Override
     protected void onPostExecute(Void result) {
+        if (err.equals("{\"non_field_errors\":[\"Unable to log in with provided credentials.\"]}")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setMessage("Unable to log in with provided credentials");
+            LayoutInflater li = LayoutInflater.from(activity);
+            View dialogView = li.inflate(R.layout.error_layout, null);
+            builder.setCancelable(false);
+            builder.setView(dialogView);
+            Button btnAccept = dialogView.findViewById(R.id.btn_accept);
+            final AlertDialog alertDialog = builder.create();
+
+            btnAccept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialog.cancel();
+                }
+            });
+            alertDialog.show();
+        }
     }
 
     public String convertInputStreamToString(InputStream inputStream) {

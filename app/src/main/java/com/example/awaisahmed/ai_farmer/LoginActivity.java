@@ -66,17 +66,10 @@ public class LoginActivity extends AppCompatActivity {
                 editor.commit();
                 String rpsw = input_password.getText().toString();
                 HttpPostAsyncTask task = new HttpPostAsyncTask(getApplicationContext(), pref, editor);
-                try {
-                    task.execute("http://app.aifarmer.du.cdr.mn/rest-auth/login/",
+                task.execute("http://app.aifarmer.du.cdr.mn/rest-auth/login/",
                             "{\"username\":\"" + pref.getString("user_name", null) + "\"" +
                                     ",\"password\":\"" + rpsw + "\"}");
-                } catch (Exception e) {
-                    Toast.makeText(LoginActivity.this,"Unregistered user or wrong password",Toast.LENGTH_LONG);
-                    e.printStackTrace();
-                    Intent i = getIntent();
-                    finish();
-                    startActivity(i);
-                }
+
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {

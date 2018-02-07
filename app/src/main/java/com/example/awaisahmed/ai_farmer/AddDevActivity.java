@@ -96,7 +96,8 @@ public class AddDevActivity  extends AppCompatActivity {
 
     private void showDialogDev() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Serial and Pin").setTitle("Insert serial number and PIN number of your device:");
+        //builder.setMessage("Serial and Pin").setTitle("Insert serial number and PIN number of your device:");
+        builder.setTitle("Insert serial number and PIN number of your device:");
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_devconnected_layout, null);
         builder.setCancelable(false);

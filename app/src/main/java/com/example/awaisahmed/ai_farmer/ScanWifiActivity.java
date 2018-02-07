@@ -251,7 +251,8 @@ public class ScanWifiActivity extends AppCompatActivity {
     private void showDialogDev() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(R.layout.dialog_devconnected_layout);
-        builder.setMessage("Serial and Pin").setTitle("Insert serial number and PIN number of your device:");
+        //builder.setMessage("Serial and Pin").setTitle("Insert serial number and PIN number of your device:");
+        builder.setTitle("Insert serial number and PIN number of your device:");
 
         edtxtSerial  = (EditText) findViewById(R.id.dev_serialnr);
         edtxtPin = (EditText) findViewById(R.id.dev_pin);

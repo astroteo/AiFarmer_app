@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="AI-Farmer"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorBackground"
             android:textSize="20dp" />
     </android.support.v7.widget.Toolbar>
 
@@ -57,7 +57,8 @@
                 android:background="@drawable/add_button_selector"
                 android:text="Sensore già connesso"
                 android:textSize="30dp"
-                android:layout_margin="5dp" />
+                android:layout_margin="5dp"
+                android:textColor="@color/colorBackground" />
             <Button
                 android:id="@+id/sensorNotConnected"
                 android:layout_width="150dp"
@@ -66,7 +67,8 @@
                 android:background="@drawable/add_button_selector"
                 android:text="Sensore non connesso"
                 android:textSize="30dp"
-                android:layout_margin="5dp" />
+                android:layout_margin="5dp"
+                android:textColor="@color/colorBackground" />
         </LinearLayout>
 
     </LinearLayout>

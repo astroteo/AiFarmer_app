@@ -47,6 +47,6 @@
         tools:layout_editor_absoluteX="310dp"
         tools:layout_editor_absoluteY="490dp"
         android:clickable="true"
-        app:backgroundTint="#3F51B5"
+        app:backgroundTint="#00bf80"
         app:elevation="10dp"/>
 </android.support.design.widget.CoordinatorLayout>

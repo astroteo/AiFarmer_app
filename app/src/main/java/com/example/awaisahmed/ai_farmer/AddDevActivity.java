@@ -71,8 +71,6 @@ public class AddDevActivity  extends AppCompatActivity {
                 //wifimanager.disconnect();
                 wifiInfo[0] =wifimanager.getConnectionInfo();
                 ssidd[0] = wifiInfo[0].getSSID().toString().toLowerCase();
-                TextView test = (TextView) findViewById(R.id.test);
-                test.setText(ssidd[0]);
 
                 String esp = "esp";
                 String ssid_guess = ssidd[0];
@@ -86,7 +84,9 @@ public class AddDevActivity  extends AppCompatActivity {
                     startActivity(intent_scan_wifi_2);
 
                 }  else {
-                    startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));}
+                    startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
+                    Toast.makeText(getApplicationContext(),"Collegati al tuo DEV esp",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -96,7 +96,8 @@ public class AddDevActivity  extends AppCompatActivity {
 
     private void showDialogDev() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Serial and Pin").setTitle("Insert serial number and PIN number of your device:");
+        //builder.setMessage("Serial and Pin").setTitle("Insert serial number and PIN number of your device:");
+        builder.setTitle("Insert serial number and PIN number of your device:");
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_devconnected_layout, null);
         builder.setCancelable(false);

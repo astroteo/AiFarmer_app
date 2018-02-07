@@ -157,8 +157,6 @@ public class ScanDevActivity extends AppCompatActivity {
 
         WifiInfo wifiInfo = wifimanager.getConnectionInfo();
         String ssid = wifiInfo.getSSID();
-        TextView test = (TextView) findViewById(R.id.test);
-        test.setText(ssid);
         while (ssid.equals("esp32")){
             goToNextActivity();
         }

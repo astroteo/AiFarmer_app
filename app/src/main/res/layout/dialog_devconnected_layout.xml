@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <EditText
         android:id="@+id/dev_serialnr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="16dp"
         android:hint="Serial Number" />
+
     <EditText
         android:id="@+id/dev_pin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:layout_marginBottom="16dp"
-        android:hint="Pin"/>
-    <Button
-        android:id="@+id/dialog_positive_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OK"
-        android:layout_alignParentRight="true"
-        android:background="#dde5ad"
-        android:layout_below="@id/dev_pin"
-        />
-    <Button
-        android:id="@+id/dialog_negative_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:layout_toLeftOf="@id/dialog_positive_btn"
-        android:background="#dde5ad"
-        android:layout_marginRight="3dp"
-        android:layout_alignBaseline="@id/dialog_positive_btn"
-        />
+        android:layout_marginTop="4dp"
+        android:hint="Pin" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/dialog_positive_btn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="#dde5ad"
+            android:text="OK"/>
+
+        <Button
+            android:id="@+id/dialog_negative_btn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="-49dp"
+            android:background="#dde5ad"
+            android:text="Cancel"/>
+
+    </LinearLayout>
 </LinearLayout>

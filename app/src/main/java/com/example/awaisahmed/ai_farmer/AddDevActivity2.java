@@ -84,8 +84,6 @@ public class AddDevActivity2 extends AppCompatActivity {
                 //wifimanager.disconnect();
                 wifiInfo[0] =wifimanager.getConnectionInfo();
                 ssidd[0] = wifiInfo[0].getSSID().toString().toLowerCase();
-                TextView test = (TextView) findViewById(R.id.test);
-                test.setText(ssidd[0]);
 
                 String esp = "esp";
                 String ssid_guess = ssidd[0];

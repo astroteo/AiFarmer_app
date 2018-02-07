@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -52,7 +51,7 @@ public class ScanWifiActivity extends AppCompatActivity {
     String selectedWifi;
     EditText edtxtSerial ;
     EditText edtxtPin;
-    String tette="";
+    String fail_intent ="";
     SharedPreferences pref;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -157,6 +156,8 @@ public class ScanWifiActivity extends AppCompatActivity {
                  //showDialogDev();
                 //controllo del pin s'è giusto
                 //showDialogDev();
+
+                // qui non va bene Toast.makeText(getApplicationContext(),"Riprova",Toast.LENGTH_SHORT).show();
             }
         });
         builder_wifi.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
@@ -205,8 +206,11 @@ public class ScanWifiActivity extends AppCompatActivity {
 
                             //???? provare a disconnettere wi-fi prima di failIntent
                             //wifimanager.disconnect();
-                            Intent failIntent= new Intent(ScanWifiActivity.this,AddDevActivity2.class);
-                            failIntent.putExtra("failure", tette = "toast");
+
+                            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!qui matt aveva messo 2 invece noi eliminta
+                            //questo intent non funziona, chiedere a matteo mettiamo un toast
+                            Intent failIntent= new Intent(ScanWifiActivity.this,AddDevActivity.class);
+                            failIntent.putExtra("failure", fail_intent = "toast");
                             startActivity(failIntent);
                         }
                     }

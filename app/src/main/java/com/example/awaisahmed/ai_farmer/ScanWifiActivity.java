@@ -72,6 +72,7 @@ public class ScanWifiActivity extends AppCompatActivity {
             wifimanager.setWifiEnabled(true);
         } else Toast.makeText(this, "Scansione in corso delle WiFi...", Toast.LENGTH_LONG).show();
 
+
         //Inizio scan delle wifi
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
@@ -109,7 +110,7 @@ public class ScanWifiActivity extends AppCompatActivity {
         }, filter);
         wifimanager.startScan();
 
-
+        Toast.makeText(this, "Passa la passsword del wifi per connettere il tuo DEV",Toast.LENGTH_LONG).show();
 
         //gestire click
         wifilist.setOnItemClickListener(new AdapterView.OnItemClickListener() {

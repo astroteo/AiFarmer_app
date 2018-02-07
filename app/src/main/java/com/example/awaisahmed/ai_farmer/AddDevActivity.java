@@ -84,7 +84,9 @@ public class AddDevActivity  extends AppCompatActivity {
                     startActivity(intent_scan_wifi_2);
 
                 }  else {
-                    startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));}
+                    startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
+                    Toast.makeText(getApplicationContext(),"Collegati al tuo DEV esp",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

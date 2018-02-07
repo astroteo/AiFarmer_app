@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity
 
     SharedPreferences pref;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////Funzioni
-    //Metodo per gestire il bottone back
+    //Metodo per gestire il bottone back, tenerlo o no--> non cambia niente
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

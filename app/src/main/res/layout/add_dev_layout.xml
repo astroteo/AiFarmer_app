@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/colorPrimaryDark">
+
         <TextView
             android:id="@+id/lbl_title"
             android:layout_width="wrap_content"
@@ -18,39 +20,55 @@
             android:textSize="20dp" />
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.0"
-        android:orientation="horizontal" >
-        <Button
-            android:id="@+id/sensorConnected"
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.0"
-            android:text="Sensore già connesso"
-            android:textSize="30dp"
-            android:layout_margin="10dp"
-            android:elevation="10dp"
-            android:background="@drawable/add_button_selector"
-            android:shadowColor="#bababa"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="2"
-            />
-    </LinearLayout>
-        <Button android:id="@+id/sensorNotConnected"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Text"
+            android:textAlignment="center"
+            android:textSize="16dp" />
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.0"
-            android:text="Sensore non connesso"
-            android:textSize="30dp"
-            android:layout_margin="10dp"
-            android:elevation="10dp"
-            android:background="@drawable/add_button_selector"
-            android:shadowColor="#bababa"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="2"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Text"
+            android:textAlignment="center"
+            android:textSize="16dp" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/sensorConnected"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:background="@drawable/add_button_selector"
+                android:text="Sensore già connesso"
+                android:textSize="30dp"
+                android:layout_margin="5dp" />
+            <Button
+                android:id="@+id/sensorNotConnected"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@drawable/add_button_selector"
+                android:text="Sensore non connesso"
+                android:textSize="30dp"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+
     </LinearLayout>
+</LinearLayout>
 

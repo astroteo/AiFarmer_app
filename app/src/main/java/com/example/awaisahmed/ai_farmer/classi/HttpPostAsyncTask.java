@@ -98,24 +98,7 @@ public class HttpPostAsyncTask extends AsyncTask<String, Void, Void> {
 
     @Override
     protected void onPostExecute(Void result) {
-        if (err.equals("{\"non_field_errors\":[\"Unable to log in with provided credentials.\"]}")) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage("Unable to log in with provided credentials");
-            LayoutInflater li = LayoutInflater.from(activity);
-            View dialogView = li.inflate(R.layout.error_layout, null);
-            builder.setCancelable(false);
-            builder.setView(dialogView);
-            Button btnAccept = dialogView.findViewById(R.id.btn_accept);
-            final AlertDialog alertDialog = builder.create();
 
-            btnAccept.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    alertDialog.cancel();
-                }
-            });
-            alertDialog.show();
-        }
     }
 
     public String convertInputStreamToString(InputStream inputStream) {

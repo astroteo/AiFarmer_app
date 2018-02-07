@@ -15,8 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.awaisahmed.ai_farmer.classi.HttpGetRequest;
 import com.example.awaisahmed.ai_farmer.classi.HttpPostAsyncTask;
@@ -34,7 +32,7 @@ public class AddDevActivity2 extends AppCompatActivity {
     EditText dev_pin;
     public static String input_dev_serialnr;
     public static String input_dev_pin;
-    String tette = " ";
+    String fail_intent = " ";
     SharedPreferences pref;
     EditText edtxtSerial;
     EditText edtxtPin;
@@ -48,9 +46,9 @@ public class AddDevActivity2 extends AppCompatActivity {
         final WifiInfo[] wifiInfo = {wifimanager.getConnectionInfo()};
         final String[] ssidd = {wifiInfo[0].getSSID().toString().toLowerCase()};
 
-        tette = getIntent().getStringExtra("failure");
-        System.out.println(tette);
-        if(tette.equals("toast")){
+        fail_intent = getIntent().getStringExtra("failure");
+        System.out.println(fail_intent);
+        if(fail_intent.equals("toast")){
             final ProgressDialog dialog = ProgressDialog.show(this, "", "Fail connection retry" ,
                     true);
             dialog.show();

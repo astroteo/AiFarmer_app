@@ -35,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
 
+
+
         //Controllo se sta usando il wifi
         WifiManager wifimanager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         if (wifimanager.isWifiEnabled() == false)
@@ -58,7 +60,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if (pref.contains("user_name") && pref.contains("user_token")) {
-            startActivity(new Intent(LoginActivity.this,AlreadyLoggedActivity.class));
+
+            //ho aggiunto il dilog
+            final ProgressDialog dialog_connection_test = ProgressDialog.show(LoginActivity.this, "", "logging... wait a bit" +
+                            "\n ",
+                    true);
+            dialog_connection_test.show();
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
             finish();
         }
 

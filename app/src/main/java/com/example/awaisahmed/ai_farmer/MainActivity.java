@@ -1,7 +1,9 @@
 package com.example.awaisahmed.ai_farmer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -31,6 +33,13 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         pref = getApplicationContext().getSharedPreferences("UserPref",0);
+
+        //Controllo se sta usando il wifi
+        WifiManager wifimanager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (wifimanager.isWifiEnabled() == false)
+        {
+            wifimanager.setWifiEnabled(true);
+        }
 
         TextView logout = (TextView) findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {

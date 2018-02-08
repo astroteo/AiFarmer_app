@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/ai_farmer"
-            android:textColor="@color/colorBackground"
+            android:textColor="@color/colorText"
             android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
 

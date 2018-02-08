@@ -33,7 +33,8 @@
             android:drawableLeft="@android:drawable/ic_lock_power_off"
             android:text="Logout"
             android:textSize="18dp"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:textColor="@color/colorText"/>
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

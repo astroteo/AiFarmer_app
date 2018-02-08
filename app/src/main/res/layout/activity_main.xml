@@ -31,9 +31,10 @@
             android:clickable="true"
             android:drawablePadding="10dp"
             android:gravity="center_vertical|left"
-            android:text="Logout"
             android:textColor="@color/colorTextGrigio"
+            android:text="Logout"
             android:textSize="18dp"
+            android:drawableTint="@color/colorTextGrigio"
             android:drawableLeft="@android:drawable/ic_lock_power_off"
             />
 

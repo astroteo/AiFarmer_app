@@ -13,11 +13,11 @@
 
     <!-- List view abbellire -->
     <ListView
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/lst_vw_devices"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="#00ffffff"
-        android:dividerHeight="4dp"/>
+        android:dividerHeight="4dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -7,114 +7,113 @@
     android:fillViewport="false"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:background="@color/colorBackgroundWhite">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <!-- TOOLBAR -->
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/toolbar"
+    android:background="@color/colorBackground">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/colorPrimaryDark">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- TOOLBAR -->
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorPrimaryDark">
+            <TextView
+                android:id="@+id/lbl_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/ai_farmer"
+                android:textColor="@color/colorBackground"
+                android:textSize="20sp" />
+        </android.support.v7.widget.Toolbar>
+
+        <!-- LOGO IMG-->
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="5mm"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <!-- LOGIN TEXT -->
         <TextView
-            android:id="@+id/lbl_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="LOGIN"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textAlignment="center" />
+
+        <!-- USERNAME -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorTextGrigio"
+                android:ems="10"
+                android:hint="username"
+                android:inputType="text"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- PASSWORD -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorTextGrigio"
+                android:textColorHighlight="@color/colorButton"
+
+                android:layout_marginBottom="5dp"
+                android:ems="10"
+                android:hint="password"
+                android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- LOGIN BUTTON -->
+        <Button
+            android:id="@+id/button_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/ai_farmer"
-            android:textColor="@color/colorText"
-            android:textSize="20sp" />
-    </android.support.v7.widget.Toolbar>
+            android:text="@string/btnLogin"
+            android:background="@drawable/button_standard"
+            android:textColor="@color/colorTextButton"/>
 
-    <!-- LOGO IMG-->
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_marginBottom="10dp"
-        android:paddingTop="5mm"
-        app:srcCompat="@mipmap/ic_launcher" />
+        <!-- OR TEXT -->
+        <TextView
+            android:id="@+id/or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="OR"
+            android:textColor="@color/colorTextGrigio"
+            android:textAlignment="center" />
 
-    <!-- LOGIN TEXT -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="LOGIN"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:textAlignment="center" />
-
-    <!-- USERNAME -->
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/colorText"
-
-        android:ems="10"
-        android:hint="username"
-        android:inputType="text"/>
-    </android.support.design.widget.TextInputLayout>
-
-    <!-- PASSWORD -->
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/colorText"
-        android:textColorHighlight="@color/colorButton"
-
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="textPassword"/>
-    </android.support.design.widget.TextInputLayout>
-
-    <!-- LOGIN BUTTON -->
-    <Button
-        android:id="@+id/button_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/btnLogin"
-        android:background="@drawable/button_standard"
-        android:textColor="@color/colorTextButton"/>
-
-    <!-- OR TEXT -->
-    <TextView
-    android:id="@+id/or"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:text="OR"
-    android:textColor="@color/colorText"
-    android:textAlignment="center" />
-
-    <!-- REGISTER BUTTON -->
-    <Button
-        android:id="@+id/button_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="button_register"
-        android:text="@string/btnRegister"
-        android:textColor="@color/colorTextButton"
-        android:background="@drawable/button_standard"/>
-</LinearLayout>
+        <!-- REGISTER BUTTON -->
+        <Button
+            android:id="@+id/button_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="button_register"
+            android:text="@string/btnRegister"
+            android:textColor="@color/colorTextButton"
+            android:background="@drawable/button_standard"/>
+    </LinearLayout>
 </ScrollView>

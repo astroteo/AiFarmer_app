@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#00bf80</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorButton">#33bbff</color>
-    <color name="colorText">#ffffff</color>
+    <color name="colorText">#676f7c</color>
     <color name="colorTextGrigio">#676f7c</color>
     <color name="colorTextButton">#434955</color>
     <color name="colorBackground">#f2f3f5</color>
@@ -12,4 +12,5 @@
     <color name="colorBackgroundWhite">#ffffff</color>
     <color name="colorBackgroundYellow">#91ffbf00</color>
     <color name="colorLista">#e6e6e6</color>
+    <color name="colorToolbar">#ffffff</color>
 </resources>

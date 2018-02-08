@@ -9,5 +9,7 @@
     <color name="colorTextButton">#434955</color>
     <color name="colorBackground">#f2f3f5</color>
     <color name="colorEditTextFocused">#33bbff</color>
+    <color name="colorBackgroundWhite">#ffffff</color>
     <color name="colorBackgroundYellow">#91ffbf00</color>
+    <color name="colorLista">#e6e6e6</color>
 </resources>

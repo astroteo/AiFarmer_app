@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorBackgroundYellow">
+    android:background="@color/colorBackgroundWhite">
     <!-- SSID TEXTVIEW -->
     <TextView
         android:id="@+id/title"
@@ -14,7 +14,7 @@
         android:text="TextView"
         tools:text="Title"
         android:typeface="normal"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorLista"
         android:textSize="25dp"
         android:textStyle="bold"
         android:padding="12dp"

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
     android:textSize="18dp"
-    android:textColor="@color/colorBackground"
+    android:textColor="@color/colorLista"
     android:text="ciaooo"
     android:padding="12dp"
     android:background="@drawable/textview_roundcorner"

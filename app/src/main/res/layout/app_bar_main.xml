@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.awaisahmed.ai_farmer.MainActivity"
-    android:background="@color/colorBackgroundYellow">
+    android:background="@color/colorBackgroundWhite">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

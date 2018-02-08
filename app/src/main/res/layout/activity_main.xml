@@ -21,22 +21,21 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer"
-        android:background="#FDD86D"
-        >
+        app:menu="@menu/activity_main_drawer">
 
         <TextView
             android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="180dp"
+            android:clickable="true"
             android:drawablePadding="10dp"
             android:gravity="center_vertical|left"
-            android:drawableLeft="@android:drawable/ic_lock_power_off"
             android:text="Logout"
+            android:textColor="@color/colorTextGrigio"
             android:textSize="18dp"
-            android:clickable="true"
-            android:textColor="@color/colorText"/>
+            android:drawableLeft="@android:drawable/ic_lock_power_off"
+            />
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

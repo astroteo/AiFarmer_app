@@ -13,5 +13,5 @@
     android:shadowDx="1"
     android:shadowDy="1"
     android:shadowRadius="2"
-    android:elevation="8dp"
+    android:elevation="10dp"
     />

@@ -112,12 +112,13 @@ public class MainActivity extends AppCompatActivity
     //Metodo per gestire il bottone back, tenerlo o no--> non cambia niente
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+       /* DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
+        }*/
+       finishAffinity();
     }
 
     //Metodo per il menu laterale

@@ -42,7 +42,6 @@
         <activity android:name=".ScanDevActivity" />
         <activity android:name=".TemperatureActivity" />
         <activity android:name=".HumidityActivity" />
-        <activity android:name=".AlreadyLoggedActivity"></activity>
     </application>
 
 </manifest>

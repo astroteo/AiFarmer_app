@@ -126,11 +126,6 @@ public class HttpPostAsyncTask extends AsyncTask<String, Void, Void> {
         return null;
     }
 
-    @Override
-    protected void onPostExecute(Void result) {
-
-    }
-
     public String convertInputStreamToString(InputStream inputStream) {
 
         final int bufferSize = 1024;

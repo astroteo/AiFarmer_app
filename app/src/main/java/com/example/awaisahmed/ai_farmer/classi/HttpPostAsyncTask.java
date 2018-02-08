@@ -67,31 +67,61 @@ public class HttpPostAsyncTask extends AsyncTask<String, Void, Void> {
         String urlString = params[0]; // URL to call
         String data = params[1];//data to post
         OutputStream out = null;
+        URL url = null;
+        HttpURLConnection urlConnection = null;
+        BufferedWriter writer = null;
+        InputStream inputStream = null;
         try {
-            URL url = new URL(urlString);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setDoInput(true);
-            urlConnection.setDoOutput(true);
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-            if (!getToken) {
-                String authToken;
-                authToken = "Token " + pref.getString("user_token", null);
-                urlConnection.setRequestProperty("Authorization", authToken);
-            }
+            url = new URL(urlString);
+        } catch (MalformedURLException mue) {
+            mue.printStackTrace();
+        }
+        try {
+            urlConnection = (HttpURLConnection) url.openConnection();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        urlConnection.setDoInput(true);
+        urlConnection.setDoOutput(true);
+        urlConnection.setRequestProperty("Content-Type", "application/json");
+        if (!getToken) {
+            String authToken;
+            authToken = "Token " + pref.getString("user_token", null);
+            urlConnection.setRequestProperty("Authorization", authToken);
+        }
+        try {
             urlConnection.setRequestMethod("POST");
+        } catch (ProtocolException pe) {
+            pe.printStackTrace();
+        }
+        try {
             out = new BufferedOutputStream(urlConnection.getOutputStream());
-            BufferedWriter writer = new BufferedWriter (new OutputStreamWriter(out, "UTF-8"));
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
+        } catch (UnsupportedEncodingException uee) {
+            uee.printStackTrace();
+        }
+        try {
             writer.write(data);
             writer.flush();
-            InputStream errStream = new BufferedInputStream(urlConnection.getErrorStream());
-            err = convertInputStreamToString(errStream);
-            InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
-            response = convertInputStreamToString(inputStream);
-            if (getToken) {
-                deJsonizeToken(response);
-            }
         } catch (IOException ioe) {
-           ioe.printStackTrace();
+            ioe.printStackTrace();
+        }
+        try {
+            inputStream = new BufferedInputStream(urlConnection.getInputStream());
+        } catch (IOException ioe){
+            ioe.printStackTrace();
+            /*
+            response = "";
+            deJsonizeToken(response);
+            */
+        }
+        response = convertInputStreamToString(inputStream);
+        if (getToken) {
+            deJsonizeToken(response);
         }
         return null;
     }
@@ -102,6 +132,7 @@ public class HttpPostAsyncTask extends AsyncTask<String, Void, Void> {
     }
 
     public String convertInputStreamToString(InputStream inputStream) {
+
         final int bufferSize = 1024;
         final char[] buffer = new char[bufferSize];
         final StringBuilder out = new StringBuilder();
@@ -121,16 +152,17 @@ public class HttpPostAsyncTask extends AsyncTask<String, Void, Void> {
     }
 
      public void deJsonizeToken(String response) {
-        String tokenKey = null;
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONObject(response);
-            tokenKey = jsonObject.getString("key");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            String tokenKey = null;
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(response);
+                tokenKey = jsonObject.getString("key");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-        editor.putString("user_token", tokenKey);
-        editor.commit();
+            editor.putString("user_token", tokenKey);
+            editor.commit();
+
     }
 }

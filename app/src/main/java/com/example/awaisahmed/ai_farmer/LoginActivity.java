@@ -77,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
                 task.execute("http://app.aifarmer.du.cdr.mn/rest-auth/login/",
                             "{\"username\":\"" + pref.getString("user_name", null) + "\"" +
                                     ",\"password\":\"" + rpsw + "\"}");
-
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {

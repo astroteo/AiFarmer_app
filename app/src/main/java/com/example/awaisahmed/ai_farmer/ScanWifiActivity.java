@@ -15,8 +15,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -183,7 +185,11 @@ public class ScanWifiActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         if(response.toString().startsWith("!!OK!!")){
                             simpleClient();
-                            showDialogDev();
+                            //showDialogDev();
+                            Intent failIntent= new Intent(ScanWifiActivity.this,AddDevActivity.class);
+                            failIntent.putExtra("failure", fail_intent = "toast");
+                            startActivity(failIntent);
+
 
                         }
                         else if (response.toString().startsWith("!!NO!!")){
@@ -248,22 +254,27 @@ public class ScanWifiActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
     //Metodo per il show dialog dev
+
     private void showDialogDev() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(R.layout.dialog_devconnected_layout);
         //builder.setMessage("Serial and Pin").setTitle("Insert serial number and PIN number of your device:");
         builder.setTitle("Insert serial number and PIN number of your device:");
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_devconnected_layout, null);
+        builder.setCancelable(false);
+        builder.setView(dialogView);
+        Button btnPositive = dialogView.findViewById(R.id.dialog_positive_btn);
+        Button btnNegative = dialogView.findViewById(R.id.dialog_negative_btn);
+        final EditText edtxtSerial = dialogView.findViewById(R.id.dev_serialnr);
+        final EditText edtxtPin = dialogView.findViewById(R.id.dev_pin);
 
-        edtxtSerial  = (EditText) findViewById(R.id.dev_serialnr);
-        edtxtPin = (EditText) findViewById(R.id.dev_pin);
+        final AlertDialog alertDialog = builder.create();
 
 
-        Toast.makeText(this,"Connected sensor - Authentication",Toast.LENGTH_LONG).show();
-
-        builder.setPositiveButton("Invia", new DialogInterface.OnClickListener() {
+        btnPositive.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //Passo il pin e la seriale
+            public void onClick(View view) {
+                alertDialog.cancel();
                 String devSerial = edtxtSerial.getText().toString();
                 String devPin = edtxtPin.getText().toString();
                 String result = "";
@@ -278,21 +289,22 @@ public class ScanWifiActivity extends AppCompatActivity {
                     ee.printStackTrace();
                 }
                 int userId = getRequest.deJsonizeId(result);
-                HttpPostAsyncTask task = new HttpPostAsyncTask(getApplicationContext());
-                task.execute("http://app.aifarmer.du.cdr.mn/api/" + devSerial + "/",
-                        "{\"name_sensor\":\"" + devSerial +
+                HttpPostAsyncTask task = new HttpPostAsyncTask(getApplicationContext(), pref);
+                String bodyPost = "{\"name_sensor\":\"" + devSerial +
                         "\",\"pin_sensor\":\"" + devPin +
-                        "\",\"user\":[" + userId + "]}");
+                        "\",\"user\":[" + userId + "]}";
+                String postUrl = "http://app.aifarmer.du.cdr.mn/api/" + devSerial + "/";
+                task.execute(postUrl, bodyPost);
+                Intent intent_dev_invia = new Intent(ScanWifiActivity.this, MainActivity.class);
+                startActivity(intent_dev_invia);
+                finish();
             }
         });
-        builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.show();
     }
+
+
+
+
     //Metodo per gestire il bottone back
     @Override
     public void onBackPressed() {

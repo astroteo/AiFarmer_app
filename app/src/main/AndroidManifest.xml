@@ -39,9 +39,11 @@
         <activity android:name=".StatusActivity" />
         <activity android:name=".AddDevActivity" />
         <activity android:name=".ScanWifiActivity" />
+        <activity android:name=".ScanWifiActivity_ALT" />
         <activity android:name=".ScanDevActivity" />
         <activity android:name=".TemperatureActivity" />
         <activity android:name=".HumidityActivity" />
+        <activity android:name=".FinishRegActivity" />
     </application>
 
 </manifest>

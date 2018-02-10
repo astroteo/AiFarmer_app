@@ -41,12 +41,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-
 /**
- * Created by Awais Ahmed on 10/01/2018.
+ * Created by teobaiguera on 10/02/18.
  */
-
-public class ScanWifiActivity extends AppCompatActivity {
+public class ScanWifiActivity_ALT extends AppCompatActivity {
     WifiManager wifimanager;
     String ssid = null;
     WifiAdapter wifiAdapter_wifi;
@@ -55,13 +53,13 @@ public class ScanWifiActivity extends AppCompatActivity {
     EditText edtxtPin;
     String fail_intent ="";
     SharedPreferences pref;
-
-
+    public static final int DEFAULT_MAX_RETRIES = 0;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scanwifi_layout);
         pref = getApplicationContext().getSharedPreferences("UserPref", 0);
+        System.out.println("THIS ACTIVITY");
 
         //Dichiarazione delle variabili
         FloatingActionButton scan_btn = (FloatingActionButton) findViewById(R.id.scan_btn);
@@ -107,7 +105,7 @@ public class ScanWifiActivity extends AppCompatActivity {
                 // Apply Comparator and sort
                 Collections.sort(results, comparator);
                 //Adapter
-                wifiAdapter_wifi = new WifiAdapter(ScanWifiActivity.this, results);/////////////------->
+                wifiAdapter_wifi = new WifiAdapter(ScanWifiActivity_ALT.this, results);/////////////------->
                 wifilist.setAdapter(wifiAdapter_wifi);
             }
         }, filter);
@@ -146,7 +144,8 @@ public class ScanWifiActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String psw = psw_text.getText().toString();
                 sendAndCheckSsidPswd(selectedWifi, psw);
-                final ProgressDialog dialog_connection_test = ProgressDialog.show(ScanWifiActivity.this, "", "Connecting..." +
+
+                final ProgressDialog dialog_connection_test = ProgressDialog.show(ScanWifiActivity_ALT.this, "", "Connecting..." +
                                 "\n 35 seconds for WiFi testing",
                         true);
                 dialog_connection_test.show();
@@ -154,18 +153,14 @@ public class ScanWifiActivity extends AppCompatActivity {
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
-                        simpleClient();
+                        getResponse();
                         dialog_connection_test.dismiss();
 
                     }
                 }, 40000);
-                 //showDialogDev();
+                //showDialogDev();
                 //controllo del pin s'è giusto
                 //showDialogDev();
-
-
-
-
 
                 // qui non va bene Toast.makeText(getApplicationContext(),"Riprova",Toast.LENGTH_SHORT).show();
             }
@@ -181,9 +176,6 @@ public class ScanWifiActivity extends AppCompatActivity {
 
     //funzioni passate da matteo
     private void sendAndCheckSsidPswd(final String ssidIns, final String pswdIns)  {
-
-
-
         final String[] Req_send = {new String()};
         String url = "http://192.168.4.1?ssid=" + ssidIns+"&pswd="+pswdIns;
         //String url = "http://www.google.com" + pin;
@@ -194,58 +186,8 @@ public class ScanWifiActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
-
-                        if(response.startsWith("!!OK!!")){
-
-                            simpleClient();
-                            final ProgressDialog dialog_connection_test_result = ProgressDialog.show(ScanWifiActivity.this, "", "GOOD YOUR SENSOR IS NOW CONNECTED\n... wait for registration ",
-                                    true);
-                            dialog_connection_test_result.show();
-
-                            new Handler().postDelayed(new Runnable()
-                            {
-                                @Override
-                                public void run()
-                                {
-                                    Intent goalIntent= new Intent(ScanWifiActivity.this,FinishRegActivity.class);
-                                    //failIntent.putExtra("failure", fail_intent = "toast");
-                                    //simpleClient();
-                                    startActivity(goalIntent);
-
-                                    finish();
-                                }
-                            }, 35000);
-                        }
-                        else if (response.startsWith("!!NO!!")){
-                            // add here the second Progress dialog [ !! in arduino settled up to 3000]
-
-                            simpleClient();
-                            final ProgressDialog dialog_connection_test_result = ProgressDialog.show(ScanWifiActivity.this, "", "Connecting..." +
-                                            "FAIL YOUR SENSOR DID NOT CONNECTED\n...try agaun ",
-                                    true);
-                            dialog_connection_test_result.show();
-
-                            new Handler().postDelayed(new Runnable()
-                            {
-                                @Override
-                                public void run()
-                                {
-                                    Intent failIntent= new Intent(ScanWifiActivity.this,AddDevActivity.class);
-                                    //failIntent.putExtra("failure", fail_intent = "toast");
-                                    for (int i=0;i<5;i++) {
-                                        //simpleClient();
-                                    }
-                                    startActivity(failIntent);
-
-                                    finish();
-                                }
-                            }, 35000);
-
-                        }
-
-
-
+                        //checkResp.setText(response.toString());
+                        System.out.println(response.toString());
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -254,15 +196,9 @@ public class ScanWifiActivity extends AppCompatActivity {
             }
         });
         queue.add(stringRequest);
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT) );
-
-        //simpleClient();
-
-
     }
 
+    //Metodo
     private void  simpleClient() {
         String url = "http://192.168.4.1";
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -273,12 +209,42 @@ public class ScanWifiActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         //checkResp.setText(response.toString());
+                        System.out.println(response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(stringRequest);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT) );
 
 
-                        if(response.startsWith("!!OK!!")){
+    }
+    //Metodo per il show dialog dev
 
+    private void getResponse( )  {
+        final String[] Req_send = {new String()};
+        String url = "http://192.168.4.1";
+        //String url = "http://www.google.com" + pin;
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String ReqString =new String();
+        ReqString = "no Message received";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(response.toString().startsWith("!!OK!!")){
 
-                            final ProgressDialog dialog_connection_test_result = ProgressDialog.show(ScanWifiActivity.this, "", "FORWARD--->\n... wait for registration ",
+                            for (int i=0;i<5; i++) {
+                                simpleClient();
+                            }
+                            //showDialogDev();
+                            final ProgressDialog dialog_connection_test_result = ProgressDialog.show(ScanWifiActivity_ALT.this, "", "Connecting..." +
+                                            "GOOD YOUR SENSOR IS NOW CONNECTED\n... wait for registration ",
                                     true);
                             dialog_connection_test_result.show();
 
@@ -287,21 +253,24 @@ public class ScanWifiActivity extends AppCompatActivity {
                                 @Override
                                 public void run()
                                 {
-                                    Intent goalIntent= new Intent(ScanWifiActivity.this,FinishRegActivity.class);
+                                    Intent goalIntent= new Intent(ScanWifiActivity_ALT.this,FinishRegActivity.class);
                                     //failIntent.putExtra("failure", fail_intent = "toast");
 
                                     startActivity(goalIntent);
 
                                     finish();
                                 }
-                            }, 35000);
+                            }, 15000);
+
+
+
+
                         }
-                        else if (response.startsWith("!!NO!!")){
+                        else if (response.toString().startsWith("!!NO!!")){
                             // add here the second Progress dialog [ !! in arduino settled up to 3000]
-
-
-                            final ProgressDialog dialog_connection_test_result = ProgressDialog.show(ScanWifiActivity.this, "",
-                                            "BACKWARD<--\n...try agaun ",
+                            simpleClient();
+                            final ProgressDialog dialog_connection_test_result = ProgressDialog.show(ScanWifiActivity_ALT.this, "", "Connecting..." +
+                                            "FAIL YOUR SENSOR DID NOT CONNECTED\n...try agaun ",
                                     true);
                             dialog_connection_test_result.show();
 
@@ -310,37 +279,36 @@ public class ScanWifiActivity extends AppCompatActivity {
                                 @Override
                                 public void run()
                                 {
-                                    Intent failIntent= new Intent(ScanWifiActivity.this,AddDevActivity.class);
+                                    Intent failIntent= new Intent(ScanWifiActivity_ALT.this,AddDevActivity.class);
                                     //failIntent.putExtra("failure", fail_intent = "toast");
 
                                     startActivity(failIntent);
 
                                     finish();
                                 }
-                            }, 35000);
+                            }, 15000);
 
                         }
-
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
-
-
             }
         });
         queue.add(stringRequest);
+
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, 0,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT) );
+
+
+        System.out.println(stringRequest);
+        if (stringRequest.toString().length() >0)
+        {
+            Toast.makeText(getApplicationContext(),  stringRequest.toString(), Toast.LENGTH_LONG).show();
+        }
     }
-    //Metodo per il show dialog dev
-
-
-
-
 
 
 
@@ -349,4 +317,5 @@ public class ScanWifiActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
 }

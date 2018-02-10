@@ -79,6 +79,7 @@ public class AddDevActivity  extends AppCompatActivity {
 
                 if (ssid_correct.startsWith(esp)){
 
+                    //Intent intent_scan_wifi_2 = new Intent(AddDevActivity.this, ScanWifiActivity.class);
                     Intent intent_scan_wifi_2 = new Intent(AddDevActivity.this, ScanWifiActivity.class);
                     finish();
                     startActivity(intent_scan_wifi_2);
